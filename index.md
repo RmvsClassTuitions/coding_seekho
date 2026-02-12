@@ -3,88 +3,116 @@ layout: default
 ---
 
 <style>
-  /* 1. Global "Cyberpunk" Settings */
+  /* Base Theme Overrides */
   body {
-    background-color: #1e1e1e !important; /* VS Code Dark Grey */
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  }
-  
-  /* 2. The Main Layout Grid (Content + Sidebar) */
-  .main-container {
-    display: grid;
-    grid-template-columns: 3fr 1fr; /* 75% Content, 25% Ads */
-    gap: 20px;
+    background-color: #0d1117 !important; /* Deep GitHub Dark */
+    color: #c9d1d9;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden;
   }
 
-  /* Mobile: Stack them vertically */
+  /* Matrix Background Canvas */
+  #matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Puts it behind everything */
+    opacity: 0.15; /* Very subtle so text is readable */
+  }
+
+  /* The Main Layout Grid */
+  .main-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Content vs Sidebar */
+    gap: 20px;
+    position: relative;
+    z-index: 10; /* Keeps content above background */
+  }
+
   @media (max-width: 768px) {
     .main-container { grid-template-columns: 1fr; }
   }
 
-  /* 3. High Tech Card Design */
+  /* High Tech Card Design */
   .tech-card {
-    background: #252526;
-    border: 1px solid #3e3e42;
-    border-left: 4px solid #00ff41; /* Hacker Green Accent */
-    padding: 15px;
+    background: rgba(22, 27, 34, 0.9); /* Glass effect */
+    border: 1px solid #30363d;
+    border-left: 3px solid #2ea44f; /* GitHub Green */
+    padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
   }
   .tech-card:hover {
-    transform: translateX(5px);
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2); /* Green Glow */
-    border-color: #00ff41;
+    transform: translateY(-2px);
+    border-color: #58a6ff; /* Blue on hover */
+    box-shadow: 0 0 15px rgba(88, 166, 255, 0.2);
   }
-  
-  .card-title {
-    color: #fff;
-    font-size: 1.4em;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  .card-desc { color: #cccccc; font-size: 0.9em; }
 
-  .btn-glitch {
-    background: transparent;
-    border: 1px solid #00ff41;
+  /* The "Fake Terminal" Widget */
+  .terminal-box {
+    background: #000;
+    border: 1px solid #333;
+    padding: 10px;
+    font-size: 0.8em;
     color: #00ff41;
-    padding: 5px 15px;
-    text-decoration: none;
-    font-weight: bold;
+    height: 150px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-family: 'Consolas', monospace;
+  }
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: #00ff41;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 0% {opacity:0;} 50% {opacity:1;} 100% {opacity:0;} }
+
+  /* Buttons */
+  .btn-glitch {
     display: inline-block;
     margin-top: 10px;
+    padding: 8px 16px;
+    background: #238636;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    border: 1px solid rgba(255,255,255,0.1);
   }
   .btn-glitch:hover {
-    background: #00ff41;
-    color: #000;
-    box-shadow: 0 0 10px #00ff41;
+    background: #2ea44f;
+    text-decoration: none;
   }
 
-  /* 4. Ad Space Styling */
+  /* Ad Spaces */
   .ad-space {
-    background: #000;
+    background: rgba(0,0,0,0.5);
     border: 1px dashed #444;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #444;
-    font-weight: bold;
-    text-align: center;
+    color: #666;
+    font-size: 0.8em;
   }
-  .ad-sidebar { height: 600px; } /* Tall skyscraper ad */
-  .ad-banner { height: 100px; width: 100%; margin-bottom: 20px; }
+  .ad-banner { height: 90px; width: 100%; margin-bottom: 30px; }
+  .ad-sidebar { height: 600px; }
 </style>
 
-<div style="text-align: center; margin-bottom: 40px;">
-  <h1 style="color: #fff; text-shadow: 0 0 10px #00ff41;">&lt;FUTURE_CODERS_ACADEMY /&gt;</h1>
-  <p style="color: #00ff41;">System Status: ONLINE | User: Guest</p>
+<canvas id="matrix-bg"></canvas>
+
+<div style="text-align: center; margin-bottom: 40px; position: relative; z-index: 10;">
+  <h1 style="color: #fff; text-shadow: 0 0 20px #2ea44f;">&lt; CODE_ACADEMY /&gt;</h1>
+  <p style="color: #8b949e;">INITIATING SEQUENCE... WELCOME USER.</p>
 </div>
 
 <div class="ad-space ad-banner">
-  [AD SPACE: 728x90 LEADERBOARD]
+  [AD_UNIT::LEADERBOARD_728x90]
 </div>
 
 <div class="main-container">
@@ -92,37 +120,125 @@ layout: default
   <div class="content-area">
     
     <div class="tech-card">
-      <div class="card-title">00 :: SYSTEM_BASICS</div>
-      <div class="card-desc">Initialize understanding of hardware, files, and logic.</div>
-      <a href="./module-0/lesson-1.html" class="btn-glitch">EXECUTE_MODULE_0</a>
+      <h2 style="color:#58a6ff; margin-top:0;">00 :: SYSTEM_BASICS</h2>
+      <p>Before you hack, you must understand the machine. Learn files, binary, and logic.</p>
+      <a href="./module-0/lesson-1.html" class="btn-glitch">INITIALIZE_MODULE_0</a>
     </div>
 
     <div class="tech-card">
-      <div class="card-title">01 :: PYTHON_CORE</div>
-      <div class="card-desc">Primary language for logic. Syntax: English-based.</div>
-      <a href="./python/lesson-1.html" class="btn-glitch">EXECUTE_MODULE_1</a>
+      <h2 style="color:#f1e05a; margin-top:0;">01 :: PYTHON_CORE</h2>
+      <p>The primary language of data science and AI. Clean syntax. Pure logic.</p>
+      <a href="./python/lesson-1.html" class="btn-glitch">RUN_PYTHON_SCRIPT</a>
     </div>
 
-    <div class="tech-card" style="border-left-color: #ff0055;">
-      <div class="card-title" style="color:#ffcc00;">02 :: WEB_DEV_HTML5</div>
-      <div class="card-desc">Front-end architecture and DOM manipulation.</div>
-      <button class="btn-glitch" style="border-color:#555; color:#555; cursor:not-allowed;">LOCKED</button>
+    <div class="tech-card" style="border-left-color: #ff0055; opacity: 0.7;">
+      <h2 style="color:#ff7b72; margin-top:0;">02 :: WEB_ARCHITECT</h2>
+      <p>HTML5 & CSS3. Building the visual interface of the internet.</p>
+      <button class="btn-glitch" style="background:#333; cursor:not-allowed;">LOCKED // COMING SOON</button>
     </div>
 
   </div>
 
   <div class="sidebar-area">
-    <div class="tech-card">
-      <h3 style="color:white; margin-top:0;">Updates</h3>
-      <ul style="color:#ccc; padding-left:20px;">
-        <li>v1.2: Python Compiler Added</li>
-        <li>v1.1: Dark Mode Enabled</li>
-      </ul>
+    
+    <div class="tech-card" style="padding:0; border:none; background:transparent;">
+      <div style="background:#333; color:#fff; padding:5px; font-size:12px;">root@academy:~</div>
+      <div class="terminal-box" id="terminal-log">
+        </div>
     </div>
 
     <div class="ad-space ad-sidebar">
-      [AD SPACE: 160x600 SKYSCRAPER]
+      [AD_UNIT::SKYSCRAPER_160x600]
     </div>
   </div>
 
 </div>
+
+<script>
+// --- EFFECT 1: MATRIX RAIN ---
+const canvas = document.getElementById('matrix-bg');
+const ctx = canvas.getContext('2d');
+
+// Set canvas to full screen
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const chars = "01010101ABCDEFGHIJKLMNOPQRSTUVWXYZ<>"; // The falling characters
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = [];
+
+// Initialize drops
+for(let x = 0; x < columns; x++) drops[x] = 1;
+
+function drawMatrix() {
+    ctx.fillStyle = "rgba(13, 17, 23, 0.05)"; // Fade effect
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#0f0"; // Green Text
+    ctx.font = fontSize + "px monospace";
+
+    for(let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+        
+        drops[i]++;
+    }
+}
+setInterval(drawMatrix, 50);
+
+// --- EFFECT 2: FAKE TERMINAL TYPING ---
+const terminal = document.getElementById('terminal-log');
+const logs = [
+    "Loading kernel modules...",
+    "Mounting file systems...",
+    "Checking dependencies...",
+    "Connecting to server...",
+    "User detected: STUDENT",
+    "Access granted.",
+    "Updating course libraries...",
+    "Compiling Python assets...",
+    "System ready."
+];
+
+let logIndex = 0;
+let charIndex = 0;
+
+function typeLog() {
+    if (logIndex >= logs.length) {
+        logIndex = 0; // Loop forever
+        terminal.innerHTML = ""; 
+    }
+    
+    const currentLog = logs[logIndex];
+    
+    // Add current text + cursor
+    // We use a temporary span so we don't rewrite the whole innerHTML
+    if (charIndex < currentLog.length) {
+        terminal.innerHTML += currentLog.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeLog, 50); // Typing speed
+    } else {
+        terminal.innerHTML += "<br>> "; // New line prompt
+        logIndex++;
+        charIndex = 0;
+        setTimeout(typeLog, 1000); // Wait before next line
+    }
+    
+    // Auto scroll to bottom
+    terminal.scrollTop = terminal.scrollHeight;
+}
+
+// Start the terminal
+terminal.innerHTML = "> ";
+setTimeout(typeLog, 1000);
+
+// Handle Window Resize for Matrix
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
