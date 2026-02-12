@@ -3,3 +3,5 @@ description: "Learn to code from zero. Free forever."
 theme: jekyll-theme-minimal
 plugins:
   - jekyll-seo-tag
+show_downloads: false
+github_is_project_page: false
