@@ -1,7 +1,4 @@
 title: "Future Coders Academy"
-description: "Learn to code from zero. Free forever."
-theme: jekyll-theme-minimal
-plugins:
-  - jekyll-seo-tag
+description: "Master the Code. Own the Future."
+theme: jekyll-theme-midnight
 show_downloads: false
-github_is_project_page: false
