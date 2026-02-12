@@ -152,6 +152,14 @@ layout: default
       <button class="btn-glitch" style="background:#333; cursor:not-allowed;">LOCKED // COMING SOON</button>
     </div>
 
+    <div class="tech-card" style="border-left-color: #f1e05a;">
+      <div class="card-title" style="color:#f1e05a;">⚡ PLAYGROUND_IDE</div>
+      <div class="card-desc">
+        Write code in Python, Java, C++, or HTML. Run it instantly in the browser.
+      </div>
+      <a href="./playground.html" class="btn-glitch" style="border-color:#f1e05a; color:#f1e05a;">LAUNCH_COMPILER</a>
+    </div>
+
   </div>
 
   <div class="sidebar-area">
