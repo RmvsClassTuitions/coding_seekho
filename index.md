@@ -35,6 +35,21 @@ layout: default
     .main-container { grid-template-columns: 1fr; }
   }
 
+  /* Mobile-Specific Tweaks */
+  @media (max-width: 768px) {
+    /* Stack everything vertically */
+    .main-container { grid-template-columns: 1fr; }
+    
+    /* Make the terminal smaller on phones so it doesn't take up too much space */
+    .terminal-box { height: 100px; font-size: 10px; }
+    
+    /* Make the title huge so it looks like a movie poster */
+    h1 { font-size: 1.8em; }
+    
+    /* Hide the sidebar ad on mobile if it's too tall */
+    .ad-sidebar { display: none; } 
+  }
+  
   /* High Tech Card Design */
   .tech-card {
     background: rgba(22, 27, 34, 0.9); /* Glass effect */
