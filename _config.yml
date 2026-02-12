@@ -1,0 +1,5 @@
+title: "Future Coders Academy"
+description: "Learn to code from zero. Free forever."
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-seo-tag
