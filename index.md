@@ -133,6 +133,12 @@ layout: default
 <div class="main-container">
 
   <div class="content-area">
+
+<div class="tech-card" style="border-left-color: #00f2ff;">
+      <h2 style="color:#00f2ff; margin-top:0;">🤖 AI_CLASS_10</h2>
+      <p>Exam Revision. Project Cycle, Neural Networks, and NLP Notes.</p>
+      <a href="./ai-class-10.html" class="btn-glitch" style="border-color:#00f2ff; color:#00f2ff;">ACCESS_NOTES</a>
+    </div>
     
     <div class="tech-card">
       <h2 style="color:#58a6ff; margin-top:0;">00 :: SYSTEM_BASICS</h2>
